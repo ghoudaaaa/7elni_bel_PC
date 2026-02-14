@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>7elni ;)... ✨</title>
+    <style>
+        body {
+            background-color: #fff0f3;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            font-family: 'Comic Sans MS', 'Chalkboard SE', cursive;
+            overflow: hidden;
+        }
+
+        .container {
+            background: white;
+            padding: 40px;
+            border-radius: 30px;
+            box-shadow: 0 10px 30px rgba(255, 182, 193, 0.5);
+            text-align: center;
+            border: 4px dashed #ff85a2;
+            z-index: 10;
+            max-width: 400px;
+            width: 90%;
+        }
+
+        h1 {
+            color: #ff4d6d;
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px #ffe5ec;
+        }
+
+        .gif-container {
+            margin-bottom: 25px;
+            height: 200px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .gif-container img {
+            max-height: 100%;
+            max-width: 100%;
+            border-radius: 15px;
+            object-fit: contain;
+        }
+
+        .buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            height: 80px;
+            align-items: center;
+        }
+
+        button {
+            padding: 15px 35px;
+            font-size: 20px;
+            font-weight: bold;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+
+        #yesBtn {
+            background-color: #ff4d6d;
+            color: white;
+            box-shadow: 0 5px 15px rgba(255, 77, 109, 0.4);
+        }
+
+        #noBtn {
+            background-color: #ffb3c1;
+            color: white;
+            position: relative;
+            z-index: 50;
+            white-space: nowrap;
+        }
+
+        .heart {
+            position: absolute;
+            color: #ff85a2;
+            font-size: 20px;
+            animation: float 4s linear infinite;
+            opacity: 0.6;
+            pointer-events: none;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(100vh) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(-10vh) rotate(360deg); opacity: 0; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container" id="mainContainer">
+        <div class="gif-container" id="gifHolder">
+            <img src="images.jfif" alt="crying cat" id="displayImg">
+        </div>
+        <h1>t7ebni salah ? ✨</h1>
+        <div class="buttons">
+            <button id="yesBtn" onclick="celebrate()">oui ghoudty ! 💖</button>
+            <button id="noBtn" onmouseover="moveNoButton()" onclick="moveNoButton()">le 🥺</button>
+        </div>
+    </div>
+
+    <script>
+        const noBtn = document.getElementById('noBtn');
+        
+        // Update these phrases to whatever you'd like
+        const phrases = [
+            "ma n7ebekch",
+            "rani martek! ",
+            "mch 3la kifek ❤️",
+            "nn",
+            "e7chem 3ad!",
+        ];
+        
+        let phraseIndex = 0;
+
+        function moveNoButton() {
+            noBtn.innerText = phrases[phraseIndex];
+            phraseIndex = (phraseIndex + 1) % phrases.length;
+
+            noBtn.style.position = 'fixed'; 
+            const padding = 100;
+            const x = Math.random() * (window.innerWidth - noBtn.offsetWidth - padding) + (padding/2);
+            const y = Math.random() * (window.innerHeight - noBtn.offsetHeight - padding) + (padding/2);
+            
+            noBtn.style.left = `${x}px`;
+            noBtn.style.top = `${y}px`;
+        }
+
+        function celebrate() {
+            const container = document.getElementById('mainContainer');
+            if (noBtn) noBtn.remove();
+            
+            container.innerHTML = `
+                <div class="gif-container">
+                    <img src="happy.jpg" alt="happy cat">
+                </div>
+                <h1>3id hob se3id ! 🥰🌹</h1>
+                <p style="font-size: 1.5rem; color: #ff85a2;">7ateni nhebek!</p>
+            `;
+
+            for(let i=0; i<30; i++) {
+                setTimeout(createHeart, i * 50);
+            }
+        }
+
+        function createHeart() {
+            const heart = document.createElement('div');
+            heart.classList.add('heart');
+            heart.innerHTML = '❤️';
+            heart.style.left = Math.random() * 100 + 'vw';
+            heart.style.animationDuration = (Math.random() * 2 + 2) + 's';
+            document.body.appendChild(heart);
+            setTimeout(() => heart.remove(), 4000);
+        }
+
+        setInterval(createHeart, 400);
+    </script>
+</body>
+</html>
